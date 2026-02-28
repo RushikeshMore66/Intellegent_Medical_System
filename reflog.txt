@@ -1,0 +1,8 @@
+3de9c59 HEAD@{0}: checkout: moving from main to main
+3de9c59 HEAD@{1}: checkout: moving from main to main
+3de9c59 HEAD@{2}: checkout: moving from main to main
+3de9c59 HEAD@{3}: checkout: moving from main to main
+3de9c59 HEAD@{4}: checkout: moving from main to main
+3de9c59 HEAD@{5}: pull origin main --rebase (finish): returning to refs/heads/main
+3de9c59 HEAD@{6}: pull origin main --rebase (start): checkout 3de9c5992627c0ea2ed09dd43e496c969ba45592
+90b50d9 HEAD@{7}: commit (initial): Redesign whole project remove RAG and implement Database for production ready scenario
