@@ -7,6 +7,18 @@ from app.core.config import SECRET_KEY, ALGORITHM
 from app.core.database import SessionLocal
 from app.models.users import User
 from fastapi import HTTPException
+from fastapi import Depends
+
+
+def require_role(required_roles: list):
+    def role_checker(current_user = Depends(get_current_user)):
+        if current_user.role not in required_roles:
+            raise HTTPException(
+                status_code=403,
+                detail="You do not have permission to perform this action"
+            )
+        return current_user
+    return role_checker
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 

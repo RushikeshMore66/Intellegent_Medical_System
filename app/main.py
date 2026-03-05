@@ -13,6 +13,13 @@ from app.models.invoice_item import InvoiceItem
 from app.api.billing import router as billing_router
 from app.models.inventory import Inventory
 from app.api.reports import router as reports_router
+from app.models.suppliers import Supplier
+from app.models.purchase import Purchase
+from app.models.purchase_item import PurchaseItem
+from app.api.suppliers import router as supplier_router
+from app.api.purchase import router as purchase_router
+
+
 
 
 app = FastAPI()
@@ -22,8 +29,9 @@ app.include_router(medicine_router)
 app.include_router(inventory_router)
 app.include_router(billing_router)
 app.include_router(reports_router)
+app.include_router(supplier_router)
+app.include_router(purchase_router)
 
-Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def root():

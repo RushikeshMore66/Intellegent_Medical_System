@@ -1,14 +1,14 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import date
 
-
 class BatchCreate(BaseModel):
+
     medicine_id: str
-    batch_number: str
+    batch_number: str = Field(..., min_length=1)
     expiry_date: date
-    quantity: int
-    purchase_price: float
-    selling_price: float
+    quantity: int = Field(..., gt=0)
+    purchase_price: float = Field(..., gt=0)
+    selling_price: float = Field(..., gt=0)
 
 
 class BatchResponse(BaseModel):

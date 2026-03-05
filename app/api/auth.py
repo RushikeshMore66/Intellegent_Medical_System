@@ -10,7 +10,7 @@ from app.schemas.pharmacy import PharmacyCreate
 from app.core.security import hash_password
 from pydantic import BaseModel, EmailStr
 from app.core.security import verify_password, create_access_token
-
+from app.core.logger import logger
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
@@ -68,13 +68,18 @@ def register_pharmacy(data: PharmacyCreate, db: Session = Depends(get_db)):
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
 
+    logger.info(f"User login attempt: {data.email}")
     user = db.query(User).filter(User.email == data.email).first()
 
     if not user:
+        logger.warning(f"Failed login attempt for email {data.email}: User not found")
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     if not verify_password(data.password, user.password_hash):
+        logger.warning(f"Failed login attempt for user {user.id}: Invalid password")
         raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    logger.info(f"User login success: {user.id}")
 
     access_token = create_access_token(
         data={

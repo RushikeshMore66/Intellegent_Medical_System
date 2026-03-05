@@ -4,16 +4,17 @@ from app.db.base import Base
 from sqlalchemy import Column, String, Float, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
-
+from sqlalchemy import Boolean
 from app.core.database import Base
+
 
 class Medicine(Base):
     __tablename__ = "medicines"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    pharmacy_id = Column(UUID(as_uuid=True), ForeignKey("pharmacies.id"), nullable=False)
+    pharmacy_id = Column(UUID(as_uuid=True), ForeignKey("pharmacies.id"), nullable=False, index=True)
 
-    name = Column(String, nullable=False)
+    name = Column(String, nullable=False, index=True)
     generic_name = Column(String)
     category = Column(String)
     manufacturer = Column(String)
@@ -24,4 +25,4 @@ class Medicine(Base):
     mrp = Column(Float)
     selling_price = Column(Float)
 
-    is_active = Column(Boolean, default=True)
+    is_active = Column(Boolean, default=True, nullable=False, index=True)
