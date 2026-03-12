@@ -1,0 +1,8 @@
+2026-03-12 19:08:26,401 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Rushi\AppData\Local\Programs\Python\Python314\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-03-12 19:09:19,581 | INFO | pharmaos | User login attempt: rushismore7777@gmail.com
+2026-03-12 19:09:19,590 | WARNING | pharmaos | Failed login attempt for email rushismore7777@gmail.com: User not found
