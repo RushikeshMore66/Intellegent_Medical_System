@@ -12,6 +12,21 @@ from app.schemas.common import PaginatedResponse
 
 router = APIRouter(prefix="/medicines", tags=["Medicines"])
 
+@router.post("/", response_model=MedicineResponse)
+def create_medicine(
+    medicine: MedicineCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(["admin", "pharmacist"]))
+):
+    new_medicine = Medicine(
+        **medicine.model_dump(),
+        pharmacy_id=current_user.pharmacy_id
+    )
+    db.add(new_medicine)
+    db.commit()
+    db.refresh(new_medicine)
+    return new_medicine
+
 @router.get("/", response_model=PaginatedResponse[MedicineResponse])
 def list_medicines(
     search: str = "",

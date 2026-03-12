@@ -11,9 +11,11 @@ class BatchCreate(BaseModel):
     selling_price: float = Field(..., gt=0)
 
 
+from uuid import UUID
+
 class BatchResponse(BaseModel):
-    id: str
-    medicine_id: str
+    id: UUID
+    medicine_id: UUID
     batch_number: str
     expiry_date: date
     quantity: int

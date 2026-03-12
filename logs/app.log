@@ -6,3 +6,98 @@ Traceback (most recent call last):
 AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-03-12 19:09:19,581 | INFO | pharmaos | User login attempt: rushismore7777@gmail.com
 2026-03-12 19:09:19,590 | WARNING | pharmaos | Failed login attempt for email rushismore7777@gmail.com: User not found
+2026-03-12 20:49:30,312 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 20:52:59,789 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Rushi\AppData\Local\Programs\Python\Python314\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-03-12 20:52:59,868 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 20:52:59,872 | WARNING | pharmaos | Failed login attempt for email test@pharmaos.com: User not found
+2026-03-12 20:53:58,072 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Rushi\AppData\Local\Programs\Python\Python314\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-03-12 20:57:54,917 | INFO | httpx | HTTP Request: POST http://testserver/auth/register-pharmacy "HTTP/1.1 400 Bad Request"
+2026-03-12 20:58:27,276 | INFO | httpx | HTTP Request: POST http://testserver/auth/register-pharmacy "HTTP/1.1 200 OK"
+2026-03-12 20:58:27,280 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 20:58:27,594 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 20:58:27,617 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:01:32,762 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:01:32,826 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Rushi\AppData\Local\Programs\Python\Python314\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-03-12 21:02:07,529 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:02:07,536 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Rushi\AppData\Local\Programs\Python\Python314\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-03-12 21:03:35,262 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:03:35,730 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:03:35,752 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:03:35,789 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:03:35,794 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 405 Method Not Allowed"
+2026-03-12 21:04:10,852 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:04:11,315 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:04:11,326 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:04:11,347 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:04:11,350 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 405 Method Not Allowed"
+2026-03-12 21:05:14,812 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:05:15,261 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:05:15,282 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:05:15,310 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:05:15,334 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 422 Unprocessable Entity"
+2026-03-12 21:05:47,721 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:05:48,105 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:05:48,117 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:05:48,145 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:08,376 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:07:08,916 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:07:08,928 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:07:08,954 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:08,984 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:09,020 | INFO | httpx | HTTP Request: POST http://testserver/purchases/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:45,411 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:07:45,988 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:07:45,998 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:07:46,022 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:46,053 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:46,123 | INFO | httpx | HTTP Request: POST http://testserver/purchases/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:46,135 | INFO | httpx | HTTP Request: GET http://testserver/inventory/ "HTTP/1.1 200 OK"
+2026-03-12 21:07:46,140 | INFO | httpx | HTTP Request: POST http://testserver/billing/invoice "HTTP/1.1 404 Not Found"
+2026-03-12 21:07:46,144 | INFO | httpx | HTTP Request: GET http://testserver/billing/analytics/daily-profit "HTTP/1.1 404 Not Found"
+2026-03-12 21:08:52,643 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:08:53,078 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:08:53,098 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:08:53,124 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:08:53,154 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 200 OK"
+2026-03-12 21:08:53,180 | INFO | httpx | HTTP Request: POST http://testserver/purchases/ "HTTP/1.1 200 OK"
+2026-03-12 21:09:35,083 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:09:35,500 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:09:35,509 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:09:35,537 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:09:35,568 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 200 OK"
+2026-03-12 21:09:35,599 | INFO | httpx | HTTP Request: POST http://testserver/purchases/ "HTTP/1.1 200 OK"
+2026-03-12 21:09:35,614 | INFO | httpx | HTTP Request: GET http://testserver/inventory/medicine/32079d7b-da8a-4d76-8573-048401b8f42a "HTTP/1.1 200 OK"
+2026-03-12 21:09:35,622 | INFO | pharmaos | Invoice creation started by user 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:10:11,025 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:10:11,478 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:10:11,490 | INFO | httpx | HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-03-12 21:10:11,521 | INFO | httpx | HTTP Request: POST http://testserver/suppliers/ "HTTP/1.1 200 OK"
+2026-03-12 21:10:11,574 | INFO | httpx | HTTP Request: POST http://testserver/medicines/ "HTTP/1.1 200 OK"
+2026-03-12 21:10:11,616 | INFO | httpx | HTTP Request: POST http://testserver/purchases/ "HTTP/1.1 200 OK"
+2026-03-12 21:10:11,630 | INFO | httpx | HTTP Request: GET http://testserver/inventory/medicine/cd31be07-ec8f-48ee-b336-0671b017e155 "HTTP/1.1 200 OK"
+2026-03-12 21:10:11,638 | INFO | pharmaos | Invoice creation started by user 3225557e-f409-48d2-a90f-0f26aa0c4ffa
+2026-03-12 21:10:11,667 | INFO | pharmaos | Invoice INV-2026-00001 created by user 3225557e-f409-48d2-a90f-0f26aa0c4ffa total=2.0
+2026-03-12 21:10:11,669 | INFO | httpx | HTTP Request: POST http://testserver/billing/ "HTTP/1.1 200 OK"
+2026-03-12 21:10:11,684 | INFO | httpx | HTTP Request: GET http://testserver/billing/analytics/today "HTTP/1.1 200 OK"
+2026-03-12 21:36:39,883 | INFO | pharmaos | User login attempt: test@pharmaos.com
+2026-03-12 21:36:42,374 | INFO | pharmaos | User login success: 3225557e-f409-48d2-a90f-0f26aa0c4ffa

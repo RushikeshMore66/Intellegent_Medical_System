@@ -8,9 +8,9 @@ from app.models.pharmacy import Pharmacy
 from app.models.users import User
 from app.schemas.pharmacy import PharmacyCreate
 from app.core.security import hash_password
-from pydantic import BaseModel, EmailStr
 from app.core.security import verify_password, create_access_token
 from app.core.logger import logger
+from app.schemas.users import RegistrationRequest, UserResponse
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
@@ -64,6 +64,38 @@ def register_pharmacy(data: PharmacyCreate, db: Session = Depends(get_db)):
         "message": "Pharmacy registered successfully",
         "pharmacy_code": pharmacy_code
     }
+
+@router.post("/register", response_model=UserResponse)
+def register(data: RegistrationRequest, db: Session = Depends(get_db)):
+    # Check if user already exists
+    existing_user = db.query(User).filter(User.email == data.email).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+
+    # For simplicity, if pharmacy_id is not provided, we might assign them to a default one 
+    # or require it. The requirement says "assign the user to a pharmacy".
+    # Let's assume there's at least one pharmacy in the system or we take a default one if none provided for now.
+    
+    pharmacy_id = data.pharmacy_id
+    if not pharmacy_id:
+        pharmacy = db.query(Pharmacy).first()
+        if not pharmacy:
+            raise HTTPException(status_code=400, detail="No pharmacy found to assign user to")
+        pharmacy_id = pharmacy.id
+
+    new_user = User(
+        email=data.email,
+        name=data.name,
+        password_hash=hash_password(data.password),
+        pharmacy_id=pharmacy_id,
+        role="pharmacist" # Default role for registration
+    )
+
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+
+    return new_user
 
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):

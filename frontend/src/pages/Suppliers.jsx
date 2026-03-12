@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import api from "../api/client";
+import AddSupplierModal from "../components/AddSupplierModal";
 
 export default function Suppliers() {
     const [suppliers, setSuppliers] = useState([]);

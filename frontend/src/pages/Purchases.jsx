@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import api from "../api/client";
+import { toast } from "react-toastify";
 
 export default function Purchases() {
 
@@ -55,7 +56,7 @@ export default function Purchases() {
             items: items
         });
 
-        alert("Purchase created successfully");
+        toast.success("Purchase created successfully");
 
         setItems([]);
     };

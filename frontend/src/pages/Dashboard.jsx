@@ -17,6 +17,7 @@ export default function Dashboard() {
     const [profit, setProfit] = useState({});
     const [trend, setTrend] = useState([]);
     const [lowStock, setLowStock] = useState([]);
+    const [expiry, setExpiry] = useState([]);
 
     const loadData = async () => {
 
@@ -25,12 +26,15 @@ export default function Dashboard() {
         const p = await api.get("/billing/analytics/total-profit");
         const s = await api.get("/billing/analytics/sales-trend");
         const l = await api.get("/inventory/low-stock");
+        const e = await api.get("/inventory/near-expiry");
+
 
         setToday(t.data);
         setMonth(m.data);
         setProfit(p.data);
         setTrend(s.data);
         setLowStock(l.data);
+        setExpiry(e.data);
     };
 
     useEffect(() => {
@@ -141,6 +145,59 @@ export default function Dashboard() {
 
                                 <td className="p-2">
                                     {item.total_quantity}
+                                </td>
+
+                            </tr>
+
+                        ))}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            {/* Expiry Alerts */}
+
+            <div className="bg-white p-6 shadow rounded mt-8">
+
+                <h3 className="text-lg font-semibold mb-4 text-yellow-600">
+                    Expiring Medicines
+                </h3>
+
+                {expiry.length === 0 && (
+                    <p className="text-gray-500">
+                        No medicines expiring soon
+                    </p>
+                )}
+
+                <table className="w-full">
+
+                    <thead>
+
+                        <tr className="border-b">
+                            <th className="p-2 text-left">Batch</th>
+                            <th className="p-2 text-left">Expiry Date</th>
+                            <th className="p-2 text-left">Quantity</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {expiry.map((item) => (
+
+                            <tr key={item.id} className="border-b">
+
+                                <td className="p-2">
+                                    {item.batch_number}
+                                </td>
+
+                                <td className="p-2 text-yellow-600 font-semibold">
+                                    {item.expiry_date}
+                                </td>
+
+                                <td className="p-2">
+                                    {item.quantity}
                                 </td>
 
                             </tr>

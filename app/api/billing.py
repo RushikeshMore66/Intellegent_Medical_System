@@ -48,6 +48,7 @@ def create_invoice(
 
     new_invoice = Invoice(
         pharmacy_id=current_user.pharmacy_id,
+        user_id=current_user.id,
         invoice_number=invoice_number,
         total_amount=0,
         gst_amount=0

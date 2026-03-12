@@ -2,6 +2,7 @@ import { useState } from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import api from "../api/client";
 import { createInvoice } from "../api/billing";
+import { toast } from "react-toastify";
 
 export default function Billing() {
     const [search, setSearch] = useState("");
@@ -110,38 +111,6 @@ export default function Billing() {
     );
 
     const generateInvoice = async () => {
-        if (cart.length === 0) return;
-
-        setLoading(true);
-        try {
-            const payload = {
-                items: cart.map(item => ({
-                    medicine_id: item.id,
-                    batch_id: item.batch_id,
-                    quantity: item.qty
-                }))
-            };
-
-            const response = await api.post("/billing/", payload);
-            const invoiceId = response.data.invoice_id;
-
-            alert("Invoice generated successfully!");
-
-            // Trigger PDF Download
-            downloadPDF(invoiceId);
-
-            // Clear cart & search
-            setCart([]);
-            setSearch("");
-            setMedicines([]);
-        } catch (error) {
-            console.error("Invoice generation failed:", error);
-            alert(error.response?.data?.detail || "Failed to generate invoice");
-        } finally {
-            setLoading(false);
-        }
-    };
-    const generateInvoice = async () => {
         try {
             const items = cart.map((item) => ({
                 medicine_id: item.id,
@@ -151,12 +120,12 @@ export default function Billing() {
 
             const result = await createInvoice(items);
 
-            alert("Invoice created successfully");
+            toast.success("Invoice created successfully");
 
-            const invoiceId = result.data.id;
+            const invoiceId = result.invoice_id;
 
             window.open(
-                `http://127.0.0.1:8000/billing/${invoiceId}/pdf`,
+                `http://127.0.0.1:8000/billing/invoice/${invoiceId}/pdf`,
                 "_blank"
             );
 
@@ -164,30 +133,10 @@ export default function Billing() {
 
         } catch (error) {
 
-            alert("Invoice failed");
+            toast.error("Invoice failed");
 
         }
 
-    };
-
-    const downloadPDF = async (invoiceId) => {
-        try {
-            const response = await api.get(`/billing/invoice/${invoiceId}/pdf`, {
-                responseType: 'blob', // Important for downloading files
-            });
-
-            // Create blob link to download
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `invoice_${invoiceId}.pdf`);
-            document.body.appendChild(link);
-            link.click();
-            link.parentNode.removeChild(link);
-        } catch (error) {
-            console.error("PDF download failed:", error);
-            alert("Failed to download PDF invoice");
-        }
     };
 
     return (

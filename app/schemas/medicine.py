@@ -12,8 +12,10 @@ class MedicineCreate(BaseModel):
     selling_price: float = Field(..., gt=0)
 
 
+from uuid import UUID
+
 class MedicineResponse(BaseModel):
-    id: str
+    id: UUID
     name: str
     generic_name: Optional[str]
     category: Optional[str]

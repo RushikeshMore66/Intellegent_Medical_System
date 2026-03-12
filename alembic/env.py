@@ -17,6 +17,7 @@ from app.models.invoice_item import InvoiceItem
 from app.models.suppliers import Supplier
 from app.models.purchase import Purchase
 from app.models.purchase_item import PurchaseItem
+from app.models.inventory import Inventory
 
 target_metadata = Base.metadata
 
