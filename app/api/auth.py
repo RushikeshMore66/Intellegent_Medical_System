@@ -1,19 +1,17 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-import uuid
 import random
+from uuid import uuid4
+from app.models.user import User
+from app.models.pharmacy import Pharmacy
 from app.api.deps import get_current_user
 from app.core.database import SessionLocal
-from app.models.pharmacy import Pharmacy
-from app.models.users import User
 from app.schemas.pharmacy import PharmacyCreate
 from app.core.security import hash_password
 from app.core.security import verify_password, create_access_token
 from app.core.logger import logger
 from app.schemas.users import RegistrationRequest, UserResponse
-class LoginRequest(BaseModel):
-    email: EmailStr
-    password: str
+from app.schemas.auth import LoginRequest
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -27,75 +25,48 @@ def get_db():
         db.close()
 
 
-@router.post("/register-pharmacy")
-def register_pharmacy(data: PharmacyCreate, db: Session = Depends(get_db)):
+@router.post("/register")
+def register(data: RegisterRequest, db: Session = Depends(get_db)):
+    pharmacy = db.query(Pharmacy).filter(
+    Pharmacy.id == pharmacy_id
+).first()
 
-    # Check if pharmacy email exists
-    existing = db.query(Pharmacy).filter(Pharmacy.email == data.email).first()
+    if not pharmacy:
+        raise HTTPException(
+            status_code=400,
+            detail="Pharmacy not found"
+        )
+
+    # check existing user
+    existing = db.query(User).filter(User.email == data.email).first()
     if existing:
-        raise HTTPException(status_code=400, detail="Pharmacy already registered")
-
-    pharmacy_code = f"PHM-{random.randint(10000,99999)}"
-
-    new_pharmacy = Pharmacy(
-        name=data.name,
-        email=data.email,
-        phone=data.phone,
-        pharmacy_code=pharmacy_code
-    )
-
-    db.add(new_pharmacy)
-    db.commit()
-    db.refresh(new_pharmacy)
-
-    # Create admin user
-    new_user = User(
-        pharmacy_id=new_pharmacy.id,
-        name=data.admin_name,
-        email=data.admin_email,
-        password_hash=hash_password(data.admin_password),
-        role="admin"
-    )
-
-    db.add(new_user)
-    db.commit()
-
-    return {
-        "message": "Pharmacy registered successfully",
-        "pharmacy_code": pharmacy_code
-    }
-
-@router.post("/register", response_model=UserResponse)
-def register(data: RegistrationRequest, db: Session = Depends(get_db)):
-    # Check if user already exists
-    existing_user = db.query(User).filter(User.email == data.email).first()
-    if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
 
-    # For simplicity, if pharmacy_id is not provided, we might assign them to a default one 
-    # or require it. The requirement says "assign the user to a pharmacy".
-    # Let's assume there's at least one pharmacy in the system or we take a default one if none provided for now.
-    
-    pharmacy_id = data.pharmacy_id
-    if not pharmacy_id:
-        pharmacy = db.query(Pharmacy).first()
-        if not pharmacy:
-            raise HTTPException(status_code=400, detail="No pharmacy found to assign user to")
-        pharmacy_id = pharmacy.id
+    # create pharmacy
+    pharmacy = Pharmacy(
+        id=uuid4(),
+        name=data.pharmacy_name
+    )
 
+    db.add(pharmacy)
+    db.commit()
+    db.refresh(pharmacy)
+
+    # create user
     new_user = User(
-        email=data.email,
+        id=uuid4(),
+        pharmacy_id=pharmacy.id,
         name=data.name,
-        password_hash=hash_password(data.password),
-        pharmacy_id=pharmacy_id,
-        role="pharmacist" # Default role for registration
+        email=data.email,
+        password_hash=get_password_hash(data.password),
+        role="admin",
+        is_active=True
     )
 
     db.add(new_user)
     db.commit()
-    db.refresh(new_user)
 
-    return new_user
+    return {"message": "User registered successfully"}
 
 @router.post("/login")
 def login(data: LoginRequest, db: Session = Depends(get_db)):
