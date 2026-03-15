@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.api.deps import get_db, get_current_user
-from app.models.users import User
+from app.models.user import User
 from app.models.invoice import Invoice
 from app.models.inventory import Inventory
 from app.models.medicine import Medicine

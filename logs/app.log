@@ -105,3 +105,13 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-03-14 10:00:10,966 | WARNING | pharmaos | Failed login attempt for email user@apollo.com: User not found
 2026-03-14 14:31:22,793 | INFO | pharmaos | User login attempt: shubham@example.com
 2026-03-14 14:31:23,397 | INFO | pharmaos | User login success: 5b8ed7fc-34cd-450a-ab02-7ddc1e21e539
+2026-03-14 22:44:45,609 | INFO | pharmaos | User login attempt: aadimore065@gmail.com
+2026-03-14 22:44:46,149 | INFO | pharmaos | User login success: bb59055c-fa3f-4567-975b-d4ada66059aa
+2026-03-14 22:59:49,421 | INFO | pharmaos | User login attempt: aadimore065@gmail.com
+2026-03-14 22:59:49,761 | INFO | pharmaos | User login success: bb59055c-fa3f-4567-975b-d4ada66059aa
+2026-03-14 23:28:36,447 | INFO | pharmaos | User login attempt: aadimore065@gmail.com
+2026-03-14 23:28:37,259 | INFO | pharmaos | User login success: bb59055c-fa3f-4567-975b-d4ada66059aa
+2026-03-14 23:29:28,593 | INFO | pharmaos | User login attempt: aadimore065@gmail.com
+2026-03-14 23:29:29,165 | INFO | pharmaos | User login success: bb59055c-fa3f-4567-975b-d4ada66059aa
+2026-03-14 23:29:56,721 | INFO | pharmaos | User login attempt: aadimore065@gmail.com
+2026-03-14 23:29:57,295 | INFO | pharmaos | User login success: bb59055c-fa3f-4567-975b-d4ada66059aa

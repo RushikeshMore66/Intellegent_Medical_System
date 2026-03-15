@@ -4,7 +4,7 @@ from uuid import UUID
 from typing import List
 from app.api.deps import get_current_user
 from app.core.database import SessionLocal
-from app.models.users import User
+from app.models.user import User
 from app.schemas.users import UserResponse, UserCreate
 from app.core.security import hash_password
 

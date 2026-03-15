@@ -6,7 +6,7 @@ from app.core.database import SessionLocal
 from app.models.medicine import Medicine
 from app.schemas.medicine import MedicineCreate, MedicineResponse
 from app.api.deps import get_current_user, get_db, require_roles, require_role
-from app.models.users import User
+from app.models.user import User
 from sqlalchemy import or_
 from app.schemas.common import PaginatedResponse
 

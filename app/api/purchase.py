@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.api.deps import get_current_user, get_db, require_role
-from app.models.users import User
+from app.models.user import User
 from app.models.purchase import Purchase
 from app.models.purchase_item import PurchaseItem
 from app.models.batch import Batch

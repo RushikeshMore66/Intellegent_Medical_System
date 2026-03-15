@@ -2,27 +2,25 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user, get_db, require_role
-from app.models.users import User
+from app.models.user import User
 from app.models.suppliers import Supplier
 from app.schemas.common import PaginatedResponse
 from sqlalchemy import or_
+
+from app.schemas.supplier import SupplierCreate
 
 router = APIRouter(prefix="/suppliers", tags=["Suppliers"])
 
 
 @router.post("/")
 def create_supplier(
-    data: dict,
+    data: SupplierCreate,
     db: Session = Depends(get_db),
     current_user: User = Depends(require_role(["admin"]))
 ):
     supplier = Supplier(
         pharmacy_id=current_user.pharmacy_id,
-        name=data.get("name"),
-        phone=data.get("phone"),
-        email=data.get("email"),
-        gst_number=data.get("gst_number"),
-        address=data.get("address"),
+        **data.model_dump()
     )
 
     db.add(supplier)

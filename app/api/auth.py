@@ -26,26 +26,21 @@ def get_db():
 
 
 @router.post("/register")
-def register(data: RegisterRequest, db: Session = Depends(get_db)):
-    pharmacy = db.query(Pharmacy).filter(
-    Pharmacy.id == pharmacy_id
-).first()
-
-    if not pharmacy:
-        raise HTTPException(
-            status_code=400,
-            detail="Pharmacy not found"
-        )
-
+def register(data: RegistrationRequest, db: Session = Depends(get_db)):
     # check existing user
     existing = db.query(User).filter(User.email == data.email).first()
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
 
-    # create pharmacy
+    # generate a unique pharmacy code
+    pharmacy_code = f"PH-{uuid4().hex[:8].upper()}"
+    
+    # create pharmacy with defaults if needed
     pharmacy = Pharmacy(
         id=uuid4(),
-        name=data.pharmacy_name
+        name=data.pharmacy_name or f"{data.name}'s Pharmacy",
+        email=data.email, # Use user email as pharmacy contact email
+        pharmacy_code=pharmacy_code
     )
 
     db.add(pharmacy)
@@ -58,7 +53,7 @@ def register(data: RegisterRequest, db: Session = Depends(get_db)):
         pharmacy_id=pharmacy.id,
         name=data.name,
         email=data.email,
-        password_hash=get_password_hash(data.password),
+        password_hash=hash_password(data.password),
         role="admin",
         is_active=True
     )

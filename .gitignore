@@ -10,3 +10,16 @@ wheels/
 .venv
 .env.local
 .env
+node_modules/
+*.sqlite3
+*.db
+#logs
+.log
+dist/
+build/
+
+#os files
+.DS_Store
+.DS_Store?
+Thumbs.db
+

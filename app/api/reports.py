@@ -4,7 +4,7 @@ from sqlalchemy import func
 from datetime import date
 
 from app.api.deps import get_db, get_current_user, require_roles
-from app.models.users import User
+from app.models.user import User
 from app.models.invoice import Invoice
 from app.models.invoice_item import InvoiceItem
 

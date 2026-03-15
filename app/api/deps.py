@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import SECRET_KEY, ALGORITHM
 from app.core.database import SessionLocal
-from app.models.users import User
+from app.models.user import User
 from fastapi import HTTPException
 from fastapi import Depends
 

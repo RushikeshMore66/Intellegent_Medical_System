@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.core.database import engine, Base
 from app.models.pharmacy import Pharmacy
-from app.models.users import User
+from app.models.user import User
 from app.api.auth import router as auth_router
 from app.api.medicine import router as medicine_router
 from app.models.medicine import Medicine
